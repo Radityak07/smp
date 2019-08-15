@@ -29,7 +29,8 @@ class Index extends CI_Controller {
 	public function materi(){
 
 		$data['title']="materi";
-
+		$this->db->order_by('nama_kelas','asc');
+		$data['materi']=$this->db->get('kelas')->result();
 		$this->load->view('user/v_materi',$data);
 	}
 	public function soal(){
@@ -60,11 +61,25 @@ class Index extends CI_Controller {
 		// var_dump($check_siswa);
 		// exit();
 		if($check_siswa ){
-			echo "berhasil"; 
 			$this->session->set_userdata('id_siswa', $check_siswa->id_siswa);
 			$this->session->set_userdata('nama', $check_siswa->nama);
+			$data = array(
+                'notif'=>true, 
+                'pesan'=>"Login berhasil.", 
+                'type'=>'success'
+            );
+            
+            $this->session->set_flashdata($data);
 		}else{
-			echo "gagal"; exit();
+
+			$data = array(
+                'notif'=>true, 
+                'pesan'=>"Periksa kembali Username dan Password anda.", 
+                'type'=>'warning'
+            );
+            
+            $this->session->set_flashdata($data);
+            // print_r($this->session->flashdata()); die();
 		}
 
 		redirect(base_url('Index'));
@@ -134,7 +149,9 @@ class Index extends CI_Controller {
 
 	public function profile(){
 		$data['title']='profile';
-    
+    	$id_siswa = $this->session->userdata('id_siswa');
+		$this->db->where('id_siswa',$id_siswa);
+		$data['get_siswa'] = $this->db->get('siswa')->row();
 		$this->load->view('user/v_profile',$data);
 
 	}
@@ -142,6 +159,29 @@ class Index extends CI_Controller {
 	public function keluar(){
 		$this->session->sess_destroy();
 		redirect(base_url());
+	}
+
+	public function ubahPassword(){
+		// print_r($_POST);
+		$password = $this->input->post('password');
+		$id_siswa = $this->input->post('id_siswa');
+
+		if(empty($password)){
+			redirect(base_url('Index/profile'));
+		}else{
+			$data = array(
+                'notif'=>true, 
+                'pesan'=>"Password berhasil diubah.", 
+                'type'=>'success'
+            );
+            
+            $this->session->set_flashdata($data);
+
+			$this->db->set('password',$password);
+			$this->db->where('id_siswa',$id_siswa);
+			$this->db->update('siswa');
+			redirect(base_url('Index/profile'));
+		}
 	}
 	
 	
