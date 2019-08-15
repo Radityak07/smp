@@ -46,6 +46,7 @@ class Soal extends Super //class mengikuti nama file. diawali dengan huruf besar
             $this->crud->display_as('id_kategori','Kategori Soal'); 
             
             /** Akhir Bagian GROCERY CRUD Edit Oleh User**/
+            
             $data = array_merge($data,$this->generateBreadcumbs());
             $data = array_merge($data,$this->generateData());
             $this->generate();

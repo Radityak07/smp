@@ -18,10 +18,14 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
-
+<style type="text/css">
+    .page-header .page-header-top .page-logo .logo-default {
+     margin: 5px !important; 
+    }
+</style>
     <head>
         <meta charset="utf-8" />
-        <title>Metronic | The Ultimate Multi-purpose Bootstrap Admin Dashboard Theme | Theme #3 | Calendar</title>
+        <title> E-Learning SMP Taruna Mandiri Pamulang </title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="#1 selling multi-purpose bootstrap admin theme sold in themeforest marketplace packed with angularjs, material design, rtl support with over thausands of templates and ui elements and plugins to power any type of web applications including saas and admin dashboards. Preview page of Theme #3 for calendar page"
@@ -61,7 +65,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <!-- BEGIN LOGO -->
                                 <div class="page-logo">
                                     <a href="<?php echo base_url(); ?>">
-                                        <img src="<?php echo base_url('assets/user') ?>/layouts/layout3/img/logo-default.jpg" alt="logo" class="logo-default">
+                                        <img src="<?php echo base_url('assets/user')?>/layouts/layout3/img/TM.PNg" alt="TM" class="logo-default">
                                     </a>
                                 </div>
                                 <!-- END LOGO -->
